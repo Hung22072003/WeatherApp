@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/weather.api/v1/data")
+@CrossOrigin
 public class DataWeatherController {
     @Autowired
     private DataWeatherService dataWeatherService;
@@ -23,7 +24,7 @@ public class DataWeatherController {
     @GetMapping("/forecast/hourly/{id}")
     public ResponseEntity<ResponseObject> getHourlyDataWeatherForecast(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok", "Get forecasted data weather successfully", dataWeatherService.getHourlyWeatherDataForecast(id).toArray())
+                new ResponseObject("ok", "Get history data weather successfully", dataWeatherService.getHourlyWeatherDataForecast(id).toArray())
         );
     }
 
@@ -41,7 +42,7 @@ public class DataWeatherController {
             throw new NotDataException();
         }
         else {
-            return ResponseEntity.status(HttpStatus.OK).body(
+            return ResponseEntity.noContent().header("Access-Control-Allow-Origin", "*").build().status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Get forecast data weather successfully", listData.toArray())
             );
         }
