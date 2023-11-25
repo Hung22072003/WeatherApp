@@ -90,7 +90,7 @@ public class DataWeatherService {
 
         LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+        end_date = endDate.plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if(!startDate.isBefore(endDate)) throw new DateOrderException();
 
         RegionDTO regionDTO = regionService.getRegionById(id);
