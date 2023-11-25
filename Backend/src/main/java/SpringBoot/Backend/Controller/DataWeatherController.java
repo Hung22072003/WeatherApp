@@ -42,7 +42,7 @@ public class DataWeatherController {
             throw new NotDataException();
         }
         else {
-            return ResponseEntity.noContent().header("Access-Control-Allow-Origin", "*").build().status(HttpStatus.OK).body(
+            return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Get forecast data weather successfully", listData.toArray())
             );
         }
