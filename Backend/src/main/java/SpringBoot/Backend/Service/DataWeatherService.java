@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @Service
 public class DataWeatherService {
     private RestTemplate restTemplate;
-    private final String key = "0e8ab344e52b47ceb185b29603180d3d";
+    private final String key = "f9eb34a7805f4d8981fb06bb5bbdc20f";
     @Autowired
     private DataWeatherRepository dataWeatherRepository;
     @Autowired
