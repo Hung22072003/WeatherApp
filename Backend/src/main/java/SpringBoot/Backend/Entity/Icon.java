@@ -17,8 +17,8 @@ public class Icon {
     public Icon() {}
 
     public Icon(IconDTO iconDTO) {
-        this.ID_Icon = iconDTO.getId();
-        this.image = iconDTO.getIcon().replace("http://localhost:8080/weather.api/v1/fileUpload/files/","");
+        this.ID_Icon = (iconDTO != null) ? iconDTO.getId() : "";
+        this.image =  (iconDTO != null) ? iconDTO.getIcon().replace("http://localhost:8080/weather.api/v1/fileUpload/files/","") : "";
     }
 
     public Icon(String ID_Icon, String image) {

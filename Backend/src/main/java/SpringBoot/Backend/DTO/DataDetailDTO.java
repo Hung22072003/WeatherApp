@@ -54,14 +54,14 @@ public class DataDetailDTO {
     }
 
     public DataDetailDTO(ModelHourlyWeather mw) {
-        this.TimeForecasted = mw.getTimestamp_local();
-        this.Cloud = mw.getClouds();
-        this.Temp = mw.getTemp();
-        this.Wind = mw.getWind_spd();
-        this.Humidity = mw.getRh();
-        this.Precip = mw.getPrecip();
-        this.Pressure = mw.getPres();
-        this.Icon = (mw.getWeather() != null) ? mw.getWeather().getIcon() : "";
+        this.TimeForecasted = mw.getDt_txt();
+        this.Cloud = mw.getClouds().getAll();
+        this.Temp = mw.getMain().getTemp();
+        this.Wind = mw.getWind().getSpeed();
+        this.Humidity = mw.getMain().getHumidity();
+        this.Precip = (mw.getRain() != null) ? mw.getRain().getPrecip() : 0.0;
+        this.Pressure = mw.getMain().getPressure();
+        this.Icon = (mw.getWeather() != null) ? mw.getWeather()[0].getIcon() : "";
     }
 
     public DataDetailDTO(DataDetail eDataDetail) {

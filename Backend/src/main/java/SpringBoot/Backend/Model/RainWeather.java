@@ -7,15 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseHourlyWeather {
-    private ModelHourlyWeather[] list;
+public class RainWeather {
+    private Double precip;
 
-    public ResponseHourlyWeather() {
+    public RainWeather() {
 
     }
 
-    public ResponseHourlyWeather(ModelHourlyWeather[] list) {
-        this.list = list;
+    public RainWeather(Double precip) {
+        this.precip = precip;
     }
-
 }

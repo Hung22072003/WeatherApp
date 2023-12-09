@@ -13,10 +13,15 @@ import SpringBoot.Backend.Model.ResponseHourlyWeather;
 import SpringBoot.Backend.Repository.DataDetailRepository;
 import SpringBoot.Backend.Repository.DataWeatherRepository;
 import SpringBoot.Backend.Repository.InsertDataDetailRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -58,15 +63,41 @@ public class DataWeatherService {
         return !date.isBefore(startDate) && !date.isAfter(endDate);
     }
     public List<DataDetailDTO> getHourlyWeatherDataForecast(Long id) {
-        String url_api = "https://api.weatherbit.io/v2.0/forecast/hourly?hours=240&units=metric" + "&key=" + key;
+        String appid = "136a3755681cb9ef118f5fa90e4edd9b";
+        String url_api = "https://api.openweathermap.org/data/2.5/forecast?units=metric" + "&appid=" + appid;
         RegionDTO regionDTO = regionService.getRegionById(id);
         if(regionDTO == null) throw new RegionNotFoundException();
         url_api = url_api + "&lon=" + regionDTO.getLongtitude() + "&lat=" + regionDTO.getLatitude();
+        List<DataDetailDTO> listData = null;
+        try {
+            URL url = new URL(url_api);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        ResponseHourlyWeather rw = restTemplate.getForObject(url_api, ResponseHourlyWeather.class);
-        assert rw != null;
-        List<DataDetailDTO> listData = Arrays.stream(rw.getData()).map(DataDetailDTO::new).collect(Collectors.toList());
+            // Thiết lập phương thức yêu cầu
+            connection.setRequestMethod("GET");
 
+            // Đọc dữ liệu từ InputStream
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+
+            reader.close();
+            connection.disconnect();
+
+            String json = response.toString().replace("3h", "precip");
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            // Chuyển đổi JSON thành đối tượng MyObject
+            ResponseHourlyWeather myObject = objectMapper.readValue(json, ResponseHourlyWeather.class);
+            listData = Arrays.stream(myObject.getList()).map(DataDetailDTO::new).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Region region = new Region(regionDTO);
         DataWeather eDataWeather = new DataWeather();
@@ -80,7 +111,6 @@ public class DataWeatherService {
             dataDetail.setData(eDataWeather);
             insertDataDetailRepository.insertWithEntityManager(dataDetail);
         }
-
         return dataDetailRepository.findAllBydata(eDataWeather).stream().map(DataDetailDTO::new).collect(Collectors.toList());
     }
 
