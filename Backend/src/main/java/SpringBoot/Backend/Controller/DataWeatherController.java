@@ -35,9 +35,42 @@ public class DataWeatherController {
         );
     }
 
+    @GetMapping("history/oneDay/{id}")
+    public ResponseEntity<ResponseObject> getOneDayDataWeatherHistory(@RequestParam(value = "date", required = false) String date, @PathVariable("id")Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get history data weather successfully", dataWeatherService.getOneDayWeatherDataHistory(id, date).toArray())
+        );
+    }
+
     @GetMapping("/forecast/daily/{id}")
     public ResponseEntity<ResponseObject> getDailyDataWeatherForecast(@RequestParam(value = "start_date", required = false) String start_date, @RequestParam(value = "end_date", required = false)String end_date, @PathVariable("id")Long id) {
         List<DataDetailDTO> listData = dataWeatherService.getDailyWeatherDataForecast(id, start_date, end_date);
+        if(listData.isEmpty()){
+            throw new NotDataException();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Get forecast data weather successfully", listData.toArray())
+            );
+        }
+    }
+
+    @GetMapping("/forecast/oneDay/{id}")
+    public ResponseEntity<ResponseObject> getOneDayDataWeatherForecast(@RequestParam(value = "date", required = false) String date, @PathVariable("id")Long id) {
+        List<DataDetailDTO> listData = dataWeatherService.getOneDayWeatherDataForecast(id, date);
+        if(listData.isEmpty()){
+            throw new NotDataException();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Get forecast data weather successfully", listData.toArray())
+            );
+        }
+    }
+
+    @GetMapping("/current/{id}")
+    public ResponseEntity<ResponseObject> getCurrentDataWeatherForecast(@PathVariable("id")Long id) {
+        List<DataDetailDTO> listData = dataWeatherService.getCurrentWeatherDataForecast(id);
         if(listData.isEmpty()){
             throw new NotDataException();
         }
