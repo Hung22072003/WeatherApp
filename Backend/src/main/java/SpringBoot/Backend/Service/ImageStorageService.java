@@ -85,9 +85,6 @@ public class ImageStorageService {
                 iconRepository.save(newIcon);
                 return iconDTO;
             }
-
-
-
         }catch (IOException e) {
             throw new RuntimeException("Failed to store file", e);
         }
