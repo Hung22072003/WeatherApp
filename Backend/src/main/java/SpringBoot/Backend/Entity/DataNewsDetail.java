@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.lang.reflect.Type;
 
 @Entity
 @Getter
@@ -18,7 +19,9 @@ public class DataNewsDetail {
     @ManyToOne
     @JoinColumn(name = "ID_Data")
     private DataNews data;
+    @Column(length = 65555)
     private String Content_Temperature;
+    @Column(length = 65555)
     private String Content_Description;
 
     @ManyToOne

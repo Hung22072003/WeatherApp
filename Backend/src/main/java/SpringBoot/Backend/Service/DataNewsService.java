@@ -62,7 +62,6 @@ public class DataNewsService {
                 String NameRegion = elementsTagH2.get(i).html();
                 String Content_Temperature = elementsTagP.get(0).html();
                 String Content_Discription = elementsTagP.get(1).html();
-
                 CompositKeyNews compositKeyNews = new CompositKeyNews(NameRegion, dataNews);
                 DataNewsDetail dataNewsDetail = new DataNewsDetail(compositKeyNews,Content_Temperature, Content_Discription, iconDTO);
                 insertDataNewsDetailRepository.insertWithEntityManager(dataNewsDetail);
