@@ -64,7 +64,7 @@ public class ImageStorageService {
             generatedFileName = generatedFileName + "." + fileExtension;
 
             Path destinationFilePath = this.storageFolder.resolve(Paths.get(generatedFileName)).normalize().toAbsolutePath();
-            System.out.println(destinationFilePath);
+            //System.out.println(destinationFilePath);
 
             if(!destinationFilePath.getParent().equals(this.storageFolder.toAbsolutePath())) {
                 throw new RuntimeException("Cannot store file outside current directory");
