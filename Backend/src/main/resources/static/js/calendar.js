@@ -181,7 +181,7 @@ function updateUI(data) {
       iconElement.src = firstItem.Icon;
       iconElement.style.display = 'block';
     } else {
-      iconElement.src = '/assets/oneDay-icons/nhietKe.png';
+      iconElement.src = '../assets/oneDay-icons/nhietKe.png';
       iconElement.style.display = 'block';
     }
   } else {
