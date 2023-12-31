@@ -1,0 +1,784 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+*{
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+    background: rgb(211, 197, 197);
+    font-family: "Tahoma", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#root{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+.btn-container{
+    margin-top: 33px;
+    justify-content: left;
+    display: flex;
+    flex-direction: column; 
+    margin-left: 20px;
+}
+.open-modal-btn{
+    padding: 0;
+    width: 50px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    display: flex;
+}
+#Favorite-button{
+    margin-top: 20px;
+} 
+.open-modal-btn svg{
+    width: 50px;
+    height: 40px;
+}
+.modal-Search{
+    /* z-index: 5; */
+    background-color: white;
+    width: 400px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    display: flex;
+}
+.modal-Favorite{
+    margin-top: 20px;
+    background-color: white;
+    width: 400px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    display: flex;
+}
+
+.modal_inner-Favorite{
+    border-radius: 5px;
+    margin: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.modal_inner-Search{
+    border-radius: 5px;
+    margin: 1rem;
+    position: relative;
+}
+.modal_header{
+    display: flex;
+    flex-direction: row;
+    width: 360px;
+    justify-content: space-between;
+    align-items: center;
+}
+.close{
+    cursor: pointer;
+}
+.search-bar {
+    width: 300px;
+    display: flex;
+    background-color:#d3c5c5;
+    
+    border: 1px solid #d3c5c5;
+    border-radius: 30px;
+    padding: 3px;    
+}
+/* .search-bar_input{
+    font-size: 20px;
+    color: #7c7777;
+    width:240px;
+    border: none;
+    outline: none;
+    background-color:#d3c5c5;
+    height: 30px;
+    padding:0;
+} */
+input[type=text]{
+    font-size: 20px;
+    color: #7c7777;
+    width:240px;
+    border: none;
+    outline: none;
+    background-color:#d3c5c5;
+    height: 30px;
+    padding:15px 10px;
+    transition: all 200ms ease;
+}
+/* input[type=text]:focus{
+    outline: none;
+    border: 1px solid #d3c5c5;
+} */
+.btn-icon-search{
+    height: 30px;
+    text-align: center;
+    width: 40px;
+    border: none;
+    background-color: transparent;
+    color: #7c7777;
+    cursor: pointer;  
+}
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}
+.MapVietNam{
+    position: fixed;
+    margin-left: 550px;
+    margin-top: 20px;
+}
+/* #svg-map{
+    display: none;
+} */
+
+#root .MapVietNam .map-overlay{
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#root .MapVietNam .map-overlay .map-outer-box{
+    position: relative;
+    
+    left: 26rem;
+    bottom: 6rem;
+    width: 60rem;
+    height: 44rem;
+}
+.province-img{
+    display: block;
+    width: 100%;
+    /* transform: translateX(-50%); */
+    /* left: 50%; */
+}
+#root .MapVietNam .map-overlay .map-outer-box .map-inner-box{
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+}
+
+#root .MapVietNam .map-overlay .map-outer-box .map-inner-box .fade-animate i{
+    cursor: pointer;
+    position: absolute;
+    color: grey;
+    font-size: 2rem;
+    font-weight: 0;
+    float: left;
+    margin-left: 2.5rem;
+}
+/* #root .MapVietNam .map-overlay .map-outer-box .map-inner-box .fade-animate i:hover{
+    
+    color: #d9317a;
+} */
+
+#root .MapVietNam .map-overlay .map-outer-box .map-inner-box .close-div{
+    width: 100%;
+    height: max-content;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+#root .MapVietNam .map-overlay .map-outer-box .map-inner-box .close-div #close-Province{
+    color: rgba(0, 0, 0, .5);
+    font-size: 1.5rem;
+}
+#root .MapVietNam .map-overlay .map-outer-box .map-inner-box h2{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.calendar-container{
+    margin-left: 50%;
+    z-index: 10;
+}
+
+#svg-Container{
+
+    justify-content: center;
+    display: flex;
+    
+}
+    
+.province{
+    cursor: pointer;
+}
+
+
+
+
+.table{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 240px;
+    display: none;
+    background-color: rgb(235 232 232);
+    border-radius: 10px;
+
+    /* flex-direction: row; */
+    /* overflow-x:auto ; */
+
+}
+
+.content-left{
+    /* flex: 0 0 20px; */
+    width: 8%;
+    height: 200px;
+    /* display: flex; */
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    white-space: nowrap;
+        /* table-layout: fixed; */
+}
+
+.row{
+    height:30px;
+    text-align: right;
+}
+
+.legend-left{
+    width: 80px;
+    max-width: 80px;
+    text-align: right;
+    color: #999;
+    padding-left: 10px;
+    font-size: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.legend-right{
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+
+}
+
+.legend-right img{
+    max-width: 23px;
+    max-height: 23px;
+    
+}
+
+.content-right{
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.content-right::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+.modal_body::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+.content-right .row{
+    border-top: 1px solid #ccc;
+    border-bottom: none;
+    
+}
+
+.data-table{
+    width: 120%;
+    border-collapse: collapse;
+    
+   
+}
+
+/* .data-table tr{
+    height: 30px; */
+    /* width: 30px; */
+/* } */
+
+.data-table th, .data-table td{
+    border-right: 1px solid #bdb8b8;
+    
+    text-align: center;
+    width: 30px; 
+    height: 30px;
+}
+
+.favorite-menu{
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.favorite-menu nav{
+    width: 96%;
+    
+}
+
+.favs-line{
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.favs-province-name{
+    font-size: 16px;
+    font-weight: 300;
+    overflow: hidden;
+    display: inline-block;
+}
+.favs-deleter{
+    font-size: 16px;
+    float: right;
+}
+.favs-weather{
+    display: block;
+    padding: 5px 10px;
+}
+#heart2{
+    width: 50px;
+    height: 40px;
+    transform: translateY(-4px) translateX(6px);
+    color: pink;
+}
+.favs-weather table{
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+}
+.favs-weather table tbody{
+    display: table-row-group;
+    vertical-align: middle;
+}
+.favs-weather table tbody tr{
+    display: table-row;
+}
+.favs-weather table tbody tr td{
+    color: black;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    /* border-right: 1px solid rgba(239,239,239,.3); */
+    border-right: 1px solid black;
+}
+.favs-weather table tbody tr td:last-child{
+    border: none;
+}
+.favs-weather table tbody tr td img{
+    width: 30px;
+    margin: 2px auto 2px auto;
+    display: block;
+}
+.favs-weather table tbody tr td big{
+    display: block;
+    font-size: 12px;
+    padding-bottom: 3.5px;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    z-index: 6;
+}
+
+
+
+.result-box ul{
+    padding: 15px 10px;
+}
+
+.result-box ul li{
+    list-style: none;
+    border-radius: 3px;
+    padding: 15px 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.result-box ul li:hover{
+    background: #e3e1e1;
+}
+
+.icon-location{
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    display: none;
+    position: absolute;
+}
+#favoriteProvincesList {
+    padding: 0;
+    list-style-type: none;
+    max-height: 300px; 
+    overflow-y: auto;
+    -ms-overflow-style: none;
+  }
+
+  #favoriteProvincesList::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  #favoriteProvincesList::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  #close-calendar{
+    cursor: pointer;
+    transform: translateX(40px) translateY(40px);
+    transition: background-color 0.3s ease;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+#close-calendar:hover {
+  background-color: rgb(170, 170, 170);
+}
+.modal-wrap{
+    display: flex;
+    flex-direction: row;
+}
+#btnCalendar{
+    display: none;
+    transform: translateX(450px) translateY(100px) rotate(-90deg);
+    height: 40px;
+    width: 100px;
+    position: relative;
+    /* left:850px;
+    top: 100px; */
+}
+
+.chart-outer-container{
+    position: absolute;
+
+    display: none;
+
+    /* transform: translateX(1rem); */
+    left: 1%;
+    top:3%;
+    width: 55rem;
+    height: 40rem;
+    
+
+}
+.chart-inner-container{
+    /* z-index: 5; */
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+}
+
+
+
+
+input[type="radio"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.lbChart{
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
+    border: none;
+    position: relative;
+    margin:0px 50px;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;transition: 0.5s ;
+}
+
+.field-choice{
+    justify-content: center;
+    height: 100px;
+    display: flex;
+}
+.field-choice .lbChart .fa{
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+
+    
+}
+label> span{
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 80%);
+    
+}
+.chart-main-container{
+    transform: translateY(50px);
+    text-align: center;
+}
+
+input[type="radio"]:checked + label{
+    background-color:  pink;
+    color: white;
+}
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes chartFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .chart-wrapper{
+    display: none;
+  }
+
+  @keyframes leftBtnFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+  }
+  @keyframes leftBtnFadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        
+      }
+      to {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+  }
+
+@keyframes calendarFadeIn{
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+}
+@keyframes calendarFadeOut{
+    from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+}
+
+
+.today-outer-container{
+    margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  z-index: 5;
+  width: 420px;
+  height: 525px;
+  inset: 0;
+  top: 41px;
+  left: 23px;
+  flex-direction: column;
+  display: none;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+}
+.today-inner-container{
+    /* z-index: 5; */
+    background-color: whitesmoke;
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+}
+.today-main-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.today-main-left{
+    
+    display: flex;
+    flex-direction: column;
+    transform: translateY(80px);
+    width: 150px;
+}
+.temperature{
+    /* text-align: center; */
+   font-size: 40px;
+}
+.icon{
+    width: 120px; height: 120px; 
+}
+
+.today-main-right{
+    width: 258px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(50px);
+    text-align: right;
+}
+.temperature-container{
+    transform: translate(20px, -40px);
+}
+#c-character-temp{
+    font-size: 25px;
+    position: fixed;
+    transform: translate(2px, 6px);
+}
+
+.today-black-line{
+    transform: translateX(30px);
+    border-top: 2px solid black;
+    width: 200px;
+}
+
+.element-group{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+}
+.element-icon{
+    width: 30px; 
+    height: 30px; 
+    transform: translate(70px, 10px);
+    /* transform: translate(70px, -5px); */
+}
+#wind-icon{
+    transform: translate(70px, -5px);
+}
+
+@keyframes todayFadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .no-data-group{
+    z-index: 10; 
+    font-size: 30px;
+    text-align: center;
+    display: none;
+    transform: translateY(100px);
+
+  }
+.content_news {
+    background-color: #ffff;
+    position: fixed;
+    right: 180px;
+    top: 150px;
+    max-width: 400px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    z-index: 100;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.content_news.active {
+    z-index: -10;
+}
+
+.content_news__title {
+    background: #009de2;
+    height: 30px;
+    line-height: 34px;
+    padding: 0 10px 0 20px;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.content_news__list {
+    padding-left: 0;
+    margin:0;
+    list-style: none;
+    padding:5px;
+    max-height: 450px;
+    overflow: auto;
+}
+
+.content_news__item {
+    border-bottom: solid 1px #e9e9e9;
+}
+
+.content_news__weather {
+    display:flex;
+    flex-direction: row;
+}
+
+.content_news__weather-img {
+    padding: 18px;
+}
+
+.content_news__weather-main {
+    padding-top:10px;
+}
+
+.content_news__weather-region {
+    display: block;
+    font-weight: 700;
+    color: #333;
+    text-transform: capitalize;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.content_news__weather-temperature {
+    font-size: 14px;
+    color: #0b038c;
+
+}
+
+.content_news__description {
+    margin:10px 5px;
+}
+
+
+    
