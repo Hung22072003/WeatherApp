@@ -115,6 +115,9 @@ public class DataWeatherService {
     }
 
     public List<DataDetailDTO> getDailyWeatherDataHistory(Long id, String start_date, String end_date) {
+        String dateFormat = "yyyy-M-d";
+        if(!isValidDateFormat(start_date, dateFormat) || !isValidDateFormat(end_date, dateFormat)) throw new DateFormatException();
+
         String[] arrayStartDate = start_date.split("-");
         for(int i = 0; i < arrayStartDate.length; i++) {
             if(Integer.parseInt(arrayStartDate[i]) < 10) {
@@ -131,8 +134,6 @@ public class DataWeatherService {
         }
         end_date = String.join("-", arrayEndDate);
 
-        String dateFormat = "yyyy-MM-dd";
-        if(!isValidDateFormat(start_date, dateFormat) || !isValidDateFormat(start_date, dateFormat)) throw new DateFormatException();
 
         LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -168,6 +169,8 @@ public class DataWeatherService {
     }
 
     public List<DataDetailDTO> getOneDayWeatherDataHistory(Long id, String date) {
+        String dateFormat = "yyyy-M-d";
+        if(!isValidDateFormat(date, dateFormat)) throw new DateFormatException();
         String[] arrayDate = date.split("-");
         for(int i = 0; i < arrayDate.length; i++) {
             if(Integer.parseInt(arrayDate[i]) < 10) {
@@ -208,6 +211,9 @@ public class DataWeatherService {
     }
 
     public List<DataDetailDTO> getDailyWeatherDataForecast(Long id, String start_date, String end_date) {
+        String dateFormat = "yyyy-M-d";
+        if(!isValidDateFormat(start_date, dateFormat) || !isValidDateFormat(end_date, dateFormat)) throw new DateFormatException();
+
         String[] arrayStartDate = start_date.split("-");
         for(int i = 0; i < arrayStartDate.length; i++) {
             if(Integer.parseInt(arrayStartDate[i]) < 10) {
@@ -223,8 +229,7 @@ public class DataWeatherService {
             }
         }
         end_date = String.join("-", arrayEndDate);
-        String dateFormat = "yyyy-MM-dd";
-        if(!isValidDateFormat(start_date, dateFormat) || !isValidDateFormat(start_date, dateFormat)) throw new DateFormatException();
+
 
         LocalDate startDate = LocalDate.parse(start_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate endDate = LocalDate.parse(end_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -261,6 +266,9 @@ public class DataWeatherService {
     }
 
     public List<DataDetailDTO> getOneDayWeatherDataForecast(Long id, String date) {
+        String dateFormat = "yyyy-M-d";
+        if(!isValidDateFormat(date, dateFormat)) throw new DateFormatException();
+
         String[] arrayDate = date.split("-");
         for(int i = 0; i < arrayDate.length; i++) {
             if(Integer.parseInt(arrayDate[i]) < 10) {

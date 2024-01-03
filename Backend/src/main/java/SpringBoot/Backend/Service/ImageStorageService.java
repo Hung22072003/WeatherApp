@@ -60,7 +60,6 @@ public class ImageStorageService {
 
             //random tên file
             String generatedFileName = UUID.randomUUID().toString().replace("-", "");
-            System.out.println(generatedFileName);
             generatedFileName = generatedFileName + "." + fileExtension;
 
             Path destinationFilePath = this.storageFolder.resolve(Paths.get(generatedFileName)).normalize().toAbsolutePath();
